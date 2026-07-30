@@ -56,3 +56,48 @@ body {
 .wine-card:hover {
     transform: translateY(-4px);
 }
+
+
+/* SearchBar */
+.search-input {
+    background: var(--etichetta);
+    border: 1px solid var(--ottone);
+    color: var(--cantina);
+    font-family: 'Inter', sans-serif;
+}
+
+.search-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--ottone);
+    background: var(--etichetta);
+    color: var(--cantina);
+}
+
+
+/* Filter */
+.filters-bar {
+    gap: 12px;
+}
+
+.filters-bar-input {
+    max-width: 280px;
+}
+
+.filters-group {
+    gap: 12px;
+}
+
+.filters-select {
+    width: 183px;
+    flex-shrink: 0;
+}
+
+.filters-sort-btn {
+    width: 72px;
+    flex-shrink: 0;
+}
+
+.filters-sort-btn-category {
+    width: 117px;
+    flex-shrink: 0;
+}

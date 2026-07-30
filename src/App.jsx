@@ -22,21 +22,27 @@ function App() {
         {/* Provider del contesto globale per condividere lo stato dei vini tra i componenti */}
         <BrowserRouter>
 
-          {/* Barra di navigazione */}
-          <Navbar />
+          <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
 
-          <Routes>
+            {/* Barra di navigazione */}
+            <Navbar />
 
-            {/* Definisce le rotte dell'applicazione */}
-            <Route path="/" element={<WineList />} />
-            <Route path="/vino/:id" element={<WineDetail />} />
-            <Route path="/confronto" element={<Compare />} />
-            <Route path="/preferiti" element={<Favorites />} />
+            <div style={{ flex: 1 }}>
+              <Routes>
 
-          </Routes>
+                {/* Definisce le rotte dell'applicazione */}
+                <Route path="/" element={<WineList />} />
+                <Route path="/vino/:id" element={<WineDetail />} />
+                <Route path="/confronto" element={<Compare />} />
+                <Route path="/preferiti" element={<Favorites />} />
 
-          {/* Footer */}
-          <Footer />
+              </Routes>
+            </div>
+
+            {/* Footer */}
+            <Footer />
+
+          </div>
 
         </BrowserRouter >
 

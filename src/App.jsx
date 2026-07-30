@@ -8,6 +8,8 @@ import WineDetail from "./pages/WineDetail"
 import Compare from "./pages/Compare"
 import Favorites from "./pages/Favorites"
 
+import Navbar from "./components/NavBar"
+import Footer from "./components/Footer"
 
 function App() {
 
@@ -20,6 +22,9 @@ function App() {
         {/* Provider del contesto globale per condividere lo stato dei vini tra i componenti */}
         <BrowserRouter>
 
+          {/* Barra di navigazione */}
+          <Navbar />
+
           <Routes>
 
             {/* Definisce le rotte dell'applicazione */}
@@ -29,6 +34,9 @@ function App() {
             <Route path="/preferiti" element={<Favorites />} />
 
           </Routes>
+
+          {/* Footer */}
+          <Footer />
 
         </BrowserRouter >
 

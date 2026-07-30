@@ -1,0 +1,58 @@
+:root {
+    --cantina: #241611;
+    --etichetta: #F4EDDD;
+    --bordeaux: #6E1423;
+    --ottone: #B08D3E;
+    --rosso: #6E1423;
+    --bianco: #C9A227;
+    --rosato: #C97B84;
+    --spumante: #E4D9BE;
+}
+
+body {
+    background-color: var(--cantina);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+}
+
+.font-display {
+    font-family: 'Fraunces', serif;
+}
+
+.font-mono {
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+
+/* NavBar */
+.navbar {
+    border-bottom: 1px solid var(--ottone);
+}
+
+
+/* Footer */
+.footer {
+    border-top: 1px solid var(--ottone);
+}
+
+
+/* Stile Card */
+.wine-card {
+    background: var(--etichetta);
+}
+
+.wine-card-badge {
+    width: 26px;
+    height: 26px;
+    top: -12px;
+    left: 16px;
+    color: var(--etichetta);
+}
+
+.wine-card {
+    transition: transform 0.2s ease;
+}
+
+.wine-card:hover {
+    transform: translateY(-4px);
+}

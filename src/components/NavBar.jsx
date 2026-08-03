@@ -1,15 +1,19 @@
 import { NavLink } from 'react-router-dom'
+import logo from '../assets/logo.png'
 
 const Navbar = () => {
     return (
         <>
 
-            {/* Barra di navigazione */}
+            {/* NaviBar */}
             <nav className="navbar navbar-expand-lg" style={{ backgroundColor: 'var(--cantina)' }}>
 
                 <div className="container">
-                    <NavLink className="navbar-brand font-display" to="/" style={{ color: 'var(--etichetta)' }}>
-                        Vinoteca
+                    <NavLink className="navbar-brand d-flex align-items-center gap-2" to="/">
+                        <img src={logo} alt="Vinoteca" style={{ height: '36px' }} />
+                        <span className="font-display" style={{ color: 'var(--etichetta)' }}>
+                            Vinoteca
+                        </span>
                     </NavLink>
 
                     <div className="d-flex gap-3">

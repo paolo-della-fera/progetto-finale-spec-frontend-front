@@ -24,19 +24,22 @@ body {
 }
 
 
-/* NavBar */
+/* #region NavBar */
 .navbar {
     border-bottom: 1px solid var(--ottone);
 }
 
+/* #endregion NavBar */
 
-/* Footer */
+
+/* #region Footer */
 .footer {
     border-top: 1px solid var(--ottone);
 }
+/* #endregion Footer */
 
 
-/* Stile Card */
+/* #region Stile Card */
 .wine-card {
     background: var(--etichetta);
 }
@@ -56,9 +59,10 @@ body {
 .wine-card:hover {
     transform: translateY(-4px);
 }
+/* #endregion Stile Card */
 
 
-/* SearchBar */
+/* #region SearchBar */
 .search-input {
     background: var(--etichetta);
     border: 1px solid var(--ottone);
@@ -73,8 +77,10 @@ body {
     color: var(--cantina);
 }
 
+/* #endregion SearchBar */
 
-/* Filter */
+
+/* #region Filter */
 .filters-bar {
     gap: 12px;
 }
@@ -101,3 +107,111 @@ body {
     width: 117px;
     flex-shrink: 0;
 }
+
+/* #endregion Filter */
+
+
+/* #region Card Wine Details */
+.wine-detail-bottle {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+}
+
+.wine-detail-bottle img {
+    max-width: 100px;
+    width: 100%;
+}
+
+.wine-detail-card {
+    background: var(--etichetta);
+    border-radius: 12px;
+    padding: 2.5rem;
+    position: relative;
+}
+
+.wine-detail-badge {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--etichetta);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.wine-detail-title {
+    font-size: 32px;
+    color: var(--cantina);
+    margin: 12px 0 4px;
+}
+
+.wine-detail-region {
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.wine-detail-specs {
+    border-top: 1px solid rgba(36, 22, 17, 0.15);
+    border-bottom: 1px solid rgba(36, 22, 17, 0.15);
+    padding: 16px 0;
+    margin-bottom: 20px;
+}
+
+.wine-detail-spec-label {
+    font-size: 11px;
+    color: var(--bordeaux);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+}
+
+.wine-detail-spec-value {
+    font-size: 16px;
+    color: var(--cantina);
+}
+
+.wine-detail-description {
+    color: var(--cantina);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.wine-detail-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-right: 8px;
+    border: 1px solid var(--ottone);
+    color: var(--ottone);
+}
+
+.wine-detail-back {
+    color: var(--ottone);
+    text-decoration: none;
+    font-size: 13px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.wine-detail-card {
+    background: var(--etichetta);
+    border-radius: 12px;
+    padding: 2.5rem;
+    position: relative;
+    padding-right: 140px;
+}
+
+@media (max-width: 576px) {
+    .wine-detail-bottle img {
+        max-width: 70px;
+    }
+    .wine-detail-card {
+        padding-right: 100px;
+    }
+}
+
+/* #endregion Card Wine Details */

@@ -227,3 +227,23 @@ body {
 }
 
 /* #endregion Card Wine Details */
+
+
+/* #region Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--cantina);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--ottone);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--bordeaux);
+}
+/* #endregion Scrollbar */

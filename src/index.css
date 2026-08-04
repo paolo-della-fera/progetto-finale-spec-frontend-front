@@ -36,12 +36,19 @@ body {
 .footer {
     border-top: 1px solid var(--ottone);
 }
+
 /* #endregion Footer */
 
 
 /* #region Stile Card */
 .wine-card {
     background: var(--etichetta);
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.wine-card:hover {
+    transform: translateY(-4px);
 }
 
 .wine-card-badge {
@@ -52,13 +59,17 @@ body {
     color: var(--etichetta);
 }
 
-.wine-card {
-    transition: transform 0.2s ease;
+.wine-card-favorite {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    color: var(--bordeaux);
+    font-size: 20px;
+    z-index: 2;
 }
 
-.wine-card:hover {
-    transform: translateY(-4px);
-}
 /* #endregion Stile Card */
 
 
@@ -209,6 +220,7 @@ body {
     .wine-detail-bottle img {
         max-width: 70px;
     }
+
     .wine-detail-card {
         padding-right: 100px;
     }

@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom'
+import { useGlobalContext } from '../context/GlobalContext'
 
 const WineCard = ({ wine }) => {
+    // Recupera i preferiti e la funzione per aggiungere/rimuovere dai preferiti dal contesto globale
+    const { favorites, toggleFavorite } = useGlobalContext()
+
     // Determina il colore della categoria del vino in base al tipo
     let colore = ''
 
@@ -14,6 +18,9 @@ const WineCard = ({ wine }) => {
     } else if (wine.category === 'Spumante') {
         colore = 'var(--spumante)'
     }
+
+    // Controlla se il vino è nei preferiti
+    const isFavorite = favorites.includes(wine.id)
 
     return (
         <>
@@ -31,6 +38,17 @@ const WineCard = ({ wine }) => {
                     >
                         {wine.category}
                     </span>
+
+                    {/* Pulsante per aggiungere/rimuovere dai preferiti */}
+                    <button
+                        className="wine-card-favorite"
+                        onClick={(e) => {
+                            e.preventDefault()
+                            toggleFavorite(wine.id)
+                        }}
+                    >
+                        <i className={isFavorite ? "bi bi-heart-fill" : "bi bi-heart"}></i>
+                    </button>
                 </div>
 
             </Link>

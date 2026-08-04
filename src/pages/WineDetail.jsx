@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useParams, Link } from "react-router-dom"
 import WineBottle from "../components/WineBottle"
+import { useGlobalContext } from "../context/GlobalContext"
 
 // Inporta l'URL dell'API dal file .env
 const API_URL = import.meta.env.VITE_API_URL
@@ -9,6 +10,9 @@ function WineDetail() {
     // Ottieni l'id del vino dai parametri dell'URL
     const { id } = useParams()
     const [wineDetail, setWineDetail] = useState()
+
+    // Recupera i preferiti e la funzione per aggiungere/rimuovere dai preferiti dal contesto globale
+    const { favorites, toggleFavorite } = useGlobalContext()
 
     // Funzione asincrona per ottenere i dettagli del vino dall'API
     const fetchWinesDetail = async () => {
@@ -46,6 +50,9 @@ function WineDetail() {
     } else if (wineDetail.category === 'Spumante') {
         colore = 'var(--spumante)'
     }
+
+    // Controlla se il vino è nei preferiti
+    const isFavorite = favorites.includes(wineDetail.id)
 
     return (
         <>
@@ -106,6 +113,17 @@ function WineDetail() {
                             <span key={tag} className="wine-detail-tag">{tag}</span>
                         ))}
                     </div>
+
+                    {/* Pulsante per aggiungere/rimuovere dai preferiti */}
+                    <button
+                        className="wine-card-favorite"
+                        onClick={(e) => {
+                            e.preventDefault()
+                            toggleFavorite(wineDetail.id)
+                        }}
+                    >
+                        <i className={isFavorite ? "bi bi-heart-fill" : "bi bi-heart"}></i>
+                    </button>
 
                 </div>
             </div>

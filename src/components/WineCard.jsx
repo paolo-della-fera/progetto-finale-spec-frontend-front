@@ -3,7 +3,7 @@ import { useGlobalContext } from '../context/GlobalContext'
 
 const WineCard = ({ wine }) => {
     // Recupera i preferiti e la funzione per aggiungere/rimuovere dai preferiti dal contesto globale
-    const { favorites, toggleFavorite } = useGlobalContext()
+    const { favorites, toggleFavorite, compareList, toggleCompare } = useGlobalContext()
 
     // Determina il colore della categoria del vino in base al tipo
     let colore = ''
@@ -21,6 +21,9 @@ const WineCard = ({ wine }) => {
 
     // Controlla se il vino è nei preferiti
     const isFavorite = favorites.includes(wine.id)
+
+    // Controlla se il vino è nella lista di confronto
+    const isCompare = compareList.includes(wine.id)
 
     return (
         <>
@@ -49,6 +52,19 @@ const WineCard = ({ wine }) => {
                     >
                         <i className={isFavorite ? "bi bi-heart-fill" : "bi bi-heart"}></i>
                     </button>
+
+                    {/* Pulsante per aggiungere/rimuovere dal confronto */}
+                    <button
+                        className="wine-card-compare"
+                        style={{ color: isCompare ? 'var(--ottone)' : 'var(--bordeaux)' }}
+                        onClick={(e) => {
+                            e.preventDefault()
+                            toggleCompare(wine.id)
+                        }}
+                    >
+                        <i className="bi bi-arrow-left-right"></i>
+                    </button>
+
                 </div>
 
             </Link>

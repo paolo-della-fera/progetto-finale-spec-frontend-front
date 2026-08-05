@@ -70,6 +70,17 @@ body {
     z-index: 2;
 }
 
+.wine-card-compare {
+    position: absolute;
+    bottom: 12px;
+    right: 44px;
+    background: none;
+    border: none;
+    color: var(--bordeaux);
+    font-size: 20px;
+    z-index: 2;
+}
+
 /* #endregion Stile Card */
 
 

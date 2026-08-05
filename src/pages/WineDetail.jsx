@@ -12,7 +12,7 @@ function WineDetail() {
     const [wineDetail, setWineDetail] = useState()
 
     // Recupera i preferiti e la funzione per aggiungere/rimuovere dai preferiti dal contesto globale
-    const { favorites, toggleFavorite } = useGlobalContext()
+    const { favorites, toggleFavorite, compareList, toggleCompare } = useGlobalContext()
 
     // Funzione asincrona per ottenere i dettagli del vino dall'API
     const fetchWinesDetail = async () => {
@@ -53,6 +53,9 @@ function WineDetail() {
 
     // Controlla se il vino è nei preferiti
     const isFavorite = favorites.includes(wineDetail.id)
+
+    // Controlla se il vino è nella lista di confronto
+    const isCompare = compareList.includes(wineDetail.id)
 
     return (
         <>
@@ -123,6 +126,18 @@ function WineDetail() {
                         }}
                     >
                         <i className={isFavorite ? "bi bi-heart-fill" : "bi bi-heart"}></i>
+                    </button>
+
+                    {/* Pulsante per aggiungere/rimuovere dal confronto */}
+                    <button
+                        className="wine-card-compare"
+                        style={{ color: isCompare ? 'var(--ottone)' : 'var(--bordeaux)' }}
+                        onClick={(e) => {
+                            e.preventDefault()
+                            toggleCompare(wineDetail.id)
+                        }}
+                    >
+                        <i className="bi bi-arrow-left-right"></i>
                     </button>
 
                 </div>

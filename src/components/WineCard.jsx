@@ -1,23 +1,14 @@
 import { Link } from 'react-router-dom'
 import { useGlobalContext } from '../context/GlobalContext'
+// Importa la funzione per ottenere il colore della categoria del vino
+import { getCategoryColor } from "../utils/colors"
 
 const WineCard = ({ wine }) => {
     // Recupera i preferiti e la funzione per aggiungere/rimuovere dai preferiti dal contesto globale
     const { favorites, toggleFavorite, compareList, toggleCompare } = useGlobalContext()
 
     // Determina il colore della categoria del vino in base al tipo
-    let colore = ''
-
-    // Imposta il colore della categoria del vino in base al tipo
-    if (wine.category === 'Rosso') {
-        colore = 'var(--rosso)'
-    } else if (wine.category === 'Bianco') {
-        colore = 'var(--bianco)'
-    } else if (wine.category === 'Rosato') {
-        colore = 'var(--rosato)'
-    } else if (wine.category === 'Spumante') {
-        colore = 'var(--spumante)'
-    }
+    const colore = getCategoryColor(wine.category)
 
     // Controlla se il vino è nei preferiti
     const isFavorite = favorites.includes(wine.id)

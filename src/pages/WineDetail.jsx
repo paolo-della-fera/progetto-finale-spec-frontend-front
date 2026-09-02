@@ -2,6 +2,8 @@ import { useState, useEffect } from "react"
 import { useParams, Link } from "react-router-dom"
 import WineBottle from "../components/WineBottle"
 import { useGlobalContext } from "../context/GlobalContext"
+// Importa la funzione per ottenere il colore della categoria del vino
+import { getCategoryColor } from "../utils/colors"
 
 // Inporta l'URL dell'API dal file .env
 const API_URL = import.meta.env.VITE_API_URL
@@ -11,6 +13,9 @@ function WineDetail() {
     const { id } = useParams()
     const [wineDetail, setWineDetail] = useState()
 
+    // Stato per gestire il caso in cui il vino non venga trovato
+    const [notFound, setNotFound] = useState(false)
+
     // Recupera i preferiti e la funzione per aggiungere/rimuovere dai preferiti dal contesto globale
     const { favorites, toggleFavorite, compareList, toggleCompare } = useGlobalContext()
 
@@ -19,19 +24,47 @@ function WineDetail() {
         try {
             // Effettua una richiesta fetch all'API per ottenere i dettagli del vino con l'id specificato
             const response = await fetch(`${API_URL}/wines/${id}`)
+
+            // Se la risposta non è ok (es. id inesistente), segna il vino come non trovato
+            if (!response.ok) {
+                setNotFound(true)
+                return
+            }
+
             const data = await response.json()
             // Aggiorna lo stato wineDetail con i dati ottenuti dalla risposta
             setWineDetail(data.wine)
         } catch (error) {
             // Logga l'errore in caso di problemi nella richiesta fetch
             console.error(error)
+            setNotFound(true)
         }
     }
 
     // useEffect per chiamare la funzione fetchWinesDetail quando il componente viene montato o quando l'id cambia
     useEffect(() => {
+        // Reset degli stati ad ogni cambio di id
+        setWineDetail(undefined)
+        setNotFound(false)
         fetchWinesDetail()
     }, [id])
+
+    // Se il vino non è stato trovato, mostra un messaggio dedicato
+    if (notFound) {
+        return (
+            <div className="container mt-5 mb-5 text-center">
+                <h2 className="font-display" style={{ color: 'var(--etichetta)' }}>
+                    Questo vino non è nella nostra cantina
+                </h2>
+                <p className="font-mono" style={{ color: 'var(--ottone)' }}>
+                    L'etichetta che cerchi non esiste o è stata rimossa.
+                </p>
+                <Link to="/" className="wine-detail-back">
+                    ← Torna alla lista
+                </Link>
+            </div>
+        )
+    }
 
     // Se wineDetail non è ancora stato caricato, restituisce null per evitare errori di rendering
     if (!wineDetail) {
@@ -39,17 +72,7 @@ function WineDetail() {
     }
 
     // Determina il colore del bordo e dello sfondo in base alla categoria del vino
-    let colore = ''
-
-    if (wineDetail.category === 'Rosso') {
-        colore = 'var(--rosso)'
-    } else if (wineDetail.category === 'Bianco') {
-        colore = 'var(--bianco)'
-    } else if (wineDetail.category === 'Rosato') {
-        colore = 'var(--rosato)'
-    } else if (wineDetail.category === 'Spumante') {
-        colore = 'var(--spumante)'
-    }
+    const colore = getCategoryColor(wineDetail.category)
 
     // Controlla se il vino è nei preferiti
     const isFavorite = favorites.includes(wineDetail.id)

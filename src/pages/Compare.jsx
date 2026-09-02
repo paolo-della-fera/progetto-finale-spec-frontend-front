@@ -1,6 +1,8 @@
 import { useGlobalContext } from "../context/GlobalContext"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+// Importa la funzione per ottenere il colore della categoria del vino
+import { getCategoryColor } from "../utils/colors"
 
 // Componente per la pagina di confronto dei vini
 import CompareCard from "../components/CompareCard"
@@ -61,18 +63,8 @@ function Compare() {
                 <div className="row g-4">
                     {/* Contenitore per i dettagli dei vini nel confronto */}
                     {comparedWines.map(wine => {
-
-                        let colore = ''
-
-                        if (wine.category === 'Rosso') {
-                            colore = 'var(--rosso)'
-                        } else if (wine.category === 'Bianco') {
-                            colore = 'var(--bianco)'
-                        } else if (wine.category === 'Rosato') {
-                            colore = 'var(--rosato)'
-                        } else if (wine.category === 'Spumante') {
-                            colore = 'var(--spumante)'
-                        }
+                        // Ottieni il colore della categoria del vino utilizzando la funzione importata
+                        const colore = getCategoryColor(wine.category)
 
                         /* Card per i dettagli del vino nel confronto */
                         return (

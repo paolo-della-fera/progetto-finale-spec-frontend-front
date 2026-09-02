@@ -12,8 +12,8 @@ function WineList() {
     const [sortBy, setSortBy] = useState('category')
     const [sortWine, setSortWine] = useState(1)
 
-    // Recupera l'array dei vini dal contesto globale
-    const { wines } = useGlobalContext()
+    // Recupera l'elenco dei vini e lo stato di errore dal contesto globale
+    const { wines, error } = useGlobalContext()
 
     const categoryOrder = ['Rosso', 'Bianco', 'Rosato', 'Spumante']
 
@@ -58,13 +58,17 @@ function WineList() {
         <>
 
             {/* Titolo della pagina */}
-            <div className="text-center mt-5 mb-5">
-                <h1 className="font-display" style={{ color: 'var(--etichetta)', fontSize: '42px' }}>
-                    Le porte della Vinoteca sono aperte
-                </h1>
-                <p className="font-mono" style={{ color: 'var(--ottone)', fontSize: '14px' }}>
-                    40 etichette da scoprire, confrontare, custodire
-                </p>
+            <div className="container">
+                <div className="hero-banner">
+                    <div className="hero-banner-content">
+                        <h1 className="font-display" style={{ color: 'var(--etichetta)', fontSize: '42px' }}>
+                            Le porte della Vinoteca<br />sono aperte
+                        </h1>
+                        <p className="font-mono" style={{ color: 'var(--ottone)', fontSize: '14px' }}>
+                            40 etichette da scoprire, confrontare, custodire
+                        </p>
+                    </div>
+                </div>
             </div>
 
             <div className="container d-flex flex-column flex-md-row justify-content-between mb-4 filters-bar">
@@ -124,8 +128,15 @@ function WineList() {
                         </div>
                     ))}
 
-                    {/* Messaggio se nessun risultato */}
-                    {filteredWines.length === 0 && (
+                    {/* Messaggio se si è verificato un errore */}
+                    {error && (
+                        <h4 className="text-center font-mono w-100 mt-4" style={{ color: 'var(--bordeaux)' }}>
+                            Impossibile caricare i vini. Riprova più tardi.
+                        </h4>
+                    )}
+
+                    {/* Messaggio se non ci sono risultati */}
+                    {!error &&filteredWines.length === 0 && (
                         <h4 className="text-center font-mono w-100 mt-4" style={{ color: 'var(--ottone)' }}>
                             Questa etichetta non è ancora in cantina!
                         </h4>
